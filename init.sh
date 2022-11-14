@@ -9,10 +9,10 @@ do
 				echo "初始化 ${base_problem_dir}";
 				init_file_name="init__.sh"
 				target_file="${base_problem_dir}${init_file_name}";
-				if [ -ne $target_file ];then
-					touch $target_file;
-				else
+				if [ -e $target_file ];then	
 					echo "${target_file}已经初始化";
+				else
+					touch $target_file;
 				fi
 			fi
 		done
