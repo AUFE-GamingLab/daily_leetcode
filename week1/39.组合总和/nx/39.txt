@@ -1,0 +1,37 @@
+from typing import List
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        n=len(candidates)
+        def zuhe(a,path,sum,result):
+            # if sum>target:
+            #     return
+            if sum==target:
+                result.append(path)
+                return
+            for i in range(a,n):
+                if sum+candidates[i]<=target:
+                    zuhe(i,path+[candidates[i]],sum+candidates[i],result)
+
+        sum1=0
+        if n==0:
+            return []
+        path1=[]
+        result=[]
+        zuhe(0,path1,sum1,result)
+        return result
+        # while i>0:
+        #     if sum==target:
+        #         sum=0
+        #         num=[]
+        #         result.append(num)
+        #     elif sum+candidates[i]<=target:
+        #         while True:
+        #             sum+=candidates[i]
+        #             num.join(0,candidates[i])
+        #             if sum+candidates[i]>target:
+        #                 break
+        #         # sum+=candidates[i]
+        #         # num.append(candidates[i])
+        #     else:
+        #         i-=1
+            

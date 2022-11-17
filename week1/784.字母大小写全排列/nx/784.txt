@@ -1,0 +1,27 @@
+import re
+class Solution:
+    def letterCasePermutation(self, s: str) -> List[str]:
+        def convert(value):
+            matched=value.group()
+            if 'a'<=matched<='z' :#and visit==0
+                #visit+=1
+                return matched.upper()
+            if 'A'<=matched<='Z' :#and visit==0
+                #visit+=1
+                return matched.lower()
+            return matched
+        load=re.findall('\D',s)
+        length=len(load)
+        result=[]
+        result.append(s)
+        def bian(n,s):
+            if n>length-1:
+                return
+            bian(n+1,s)
+            a=re.sub(load[n],convert,s,count=1)
+            result.append(a)
+            bian(n+1,a)
+            # bian(n+1,s)
+
+        bian(0,s)
+        return result
