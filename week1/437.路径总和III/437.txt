@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def pathSum(self, root: Optional[TreeNode], targetSum: int) -> int:
+        presum = collections.defaultdict(int)#字典之前和为key的个数为value个
+        presum[0]=1
+        def my_path(root,path):
+            if root is None:
+                return 0
+            num=0
+            path+=root.val
+            num+=presum[path-targetSum]
+            presum[path]+=1
+            num+=my_path(root.left,path)
+            num+=my_path(root.right,path)
+            presum[path]-=1
+            return num
+        return my_path(root,0)
+
+

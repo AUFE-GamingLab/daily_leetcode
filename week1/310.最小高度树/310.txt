@@ -1,0 +1,61 @@
+class Solution:
+    def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+        if n==1:
+            return [0]
+        g = [[] for i in range(n)]#放每个元素连接的元素
+        visit=[0]*n
+        defaultdict(list)
+        for a, b in edges:
+            visit[a] += 1
+            visit[b] += 1
+            g[a].append(b)
+            g[b].append(a)
+        nodes = [i for i, v in enumerate(visit) if v <= 1]
+        # return list(enumerate(visit)) 
+        while n > 2:
+            n -= len(nodes)
+            son = []
+            for node in nodes:
+                for other in g[node]:
+                    visit[other] -= 1
+                    if visit[other] == 1:
+                        son.append(other)
+            nodes = son
+        return nodes
+
+# class Solution:
+#     def findMinHeightTrees(self, n: int, edges: List[List[int]]) -> List[int]:
+#         if n == 1:
+#             return [0]
+
+        
+#         maxh=0
+#         def dfs(n,visit,h):
+#             nonlocal maxh
+#             if h>maxh:
+#                 maxh=h
+#             for i in g[n]:
+#                 if visit[i]== 0:
+#                     visit[i]+=1
+#                     dfs(i,visit,h+1)
+#                     visit[i]-=1
+#         visit[0]=1
+#         dfs(0,visit,1)
+#         visit[0]=0
+#         # minh=[]
+#         # higth(0,visit,path)
+#         h=maxh
+#         result=[]
+#         result.append(0)
+#         for i in range(1,n):
+#             maxh=0
+#             visit[i]+=1
+#             dfs(i,visit,1)
+#             visit[i]-=1
+#             if maxh<h:
+#                 h=maxh
+#                 result=[]
+#                 result.append(i)     
+#             elif maxh==h:
+#                 result.append(i)
+#         return result
