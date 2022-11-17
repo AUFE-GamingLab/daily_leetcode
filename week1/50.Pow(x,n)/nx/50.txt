@@ -1,0 +1,31 @@
+import math
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        b=1
+        if x == 0.0: return 0.0
+        if n==0:
+            result=1
+            return result
+        elif n<0:
+            x=1/x
+            n=-n
+            b=-1
+        result=x
+        i=1
+        num=1
+        last=x
+        while i<n:
+            if n-i<num:
+                last=x
+                num=1
+            # if n-i<num:
+            #     while True:
+            #         num/=2
+            #         last=b*math.sqrt(last)
+            #         if n-i>=num:
+            #             break
+            result*=last
+            i+=num
+            num+=num
+            last*=last
+        return result
