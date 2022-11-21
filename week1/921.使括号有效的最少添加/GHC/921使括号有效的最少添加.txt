@@ -1,0 +1,19 @@
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        res = 0
+        stack = []
+
+        for ch in s:
+            if ch == '(':
+                stack.append(ch)
+            else:
+                if stack:
+                    stack.pop()
+                else:
+                    res += 1
+        
+        if stack:
+            res += len(stack)
+
+        return res
+        

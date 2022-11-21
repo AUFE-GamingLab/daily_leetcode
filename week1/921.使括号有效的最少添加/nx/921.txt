@@ -1,0 +1,17 @@
+
+class Solution:
+    def minAddToMakeValid(self, s: str) -> int:
+        m=list(s)
+        length=len(m)
+        a=0
+        b=0
+        for i in range(length):
+            if m[i]=='(':
+                a+=1
+            if m[i]==')' and a==0:
+                b+=1
+            if m[i]==')' and a>0:
+                a-=1
+            
+        result=a+b
+        return result
