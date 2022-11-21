@@ -11,7 +11,7 @@ do
 				for p_dir in $current_dir
 				do
 					if [ -d "${base_problem_dir}${p_dir}" ];then
-					echo ${p_dir:0:-1}
+					echo "   ${p_dir:0:-1}"
 					fi
 				done
 			fi
